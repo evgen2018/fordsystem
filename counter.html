@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+	</style>
+	<style type="text/css">
+		body,html{
+			height: 50px%;
+			margin:0;
+			padding: 0;
+			background: #039acf;
+
+		}
+		.countdown{
+			display:flex;
+			font-size: 26px;
+			font-family: 'Open Sans', sans-serif;
+		}
+		.number-wrapper{
+			display: flex;
+			position: relative;
+		}
+		.number-wrapper:after{
+			content: ":";
+			display: block;
+			font-size: 0.7em;
+			position: absolute;
+			right: 0;
+			top: 50%;
+			transform: translate(40%, -50%); ;
+		}
+		.time-wrapper:last-child .number-wrapper:after{
+			display: none;
+		}
+
+
+		.number-item{
+			margin: 5px; 
+			position: relative;
+		}
+		.number-label{
+			background-color: #ddd;
+			padding: 0 10px;
+  			box-shadow: 1px 1.732px 5px 0px rgba( 0, 0, 0, 0.35 );
+  			box-sizing: border-box;
+  			overflow: hidden;
+		}
+
+		.number-label.next{
+			display: none;
+		}
+
+		.number-label.top{
+			height: 50%;
+			border-radius: 6px 6px 0 0;
+		}
+		.number-label.bottom{
+			height: 50%;
+			top:50%;
+			border-radius: 0 0 6px 6px;
+			position: absolute;
+			line-height: 0;
+			border-top:1px solid #b2b2b2;
+			box-shadow: 0px -1px 0px 0px rgba( 178, 178, 178, 0.35 ), 1px 1.732px 5px 0px rgba( 0, 0, 0, 0.35 );
+		}
+		.label{
+			color:white;
+			font-size: 0.5em;
+		}
+		.time-wrapper{
+			text-align: center;
+		}
+
+
+
+
+
+		@media (max-width:350px) {
+
+			.countdown{
+				opacity: 0.5;
+			}
+		}
+	</style>
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="./js/jquery.countdown-2.1.0/jquery.countdown.js"></script>
+	<script type="text/javascript">
+		function pad(number, length) {
+		   
+		    var str = '' + number;
+		    while (str.length < length) {
+		        str = '0' + str;
+		    }
+
+		    return str;
+
+		}
+
+		$(function(){
+				$('.countdown').countdown('2020/10/10 12:34:56')
+					.on('update.countdown', function(event) {
+					  const data = event.offset;
+					  const [daysF1, daysF2] = pad(data.days, 2).split('');
+
+					  const [hoursF1, hoursF2] = pad(data.hours, 2).split('');
+					  const [minutesF1, minutesF2] = pad(data.minutes, 2).split('');
+
+
+					  $('.day-f-1 .curr').html(daysF1)
+					  $('.day-f-2 .curr').html(daysF2)
+
+					  $('.hours-f-1 .curr').html(hoursF1)
+					  $('.hours-f-2 .curr').html(hoursF2)
+
+					  $('.minutes-f-1 .curr').html(minutesF1)
+					  $('.minutes-f-2 .curr').html(minutesF2)
+
+					
+					})
+		});
+	</script>
+</head>
+<body>
+	<div class="countdown">
+		
+		<div class="time-wrapper">
+			<div class="number-wrapper">
+				<div class="number-item day-f-1">
+					<div class="number-label curr top"></div>
+					<div class="number-label curr bottom"></div>
+				</div>
+				<div class="number-item day-f-2">
+					<div class="number-label curr top"></div>
+					<div class="number-label curr bottom"></div>
+				</div>
+			</div>
+			<span class="label">days</span>
+		</div>
+
+		<div class="time-wrapper">
+			<div class="number-wrapper">
+				<div class="number-item hours-f-1">
+					<div class="number-label curr top"></div>
+					<div class="number-label curr bottom"></div>
+				</div>
+				<div class="number-item hours-f-2">
+					<div class="number-label curr top"></div>
+					<div class="number-label curr bottom"></div>
+				</div>
+			</div>
+			<span class="label">hours</span>
+		</div>
+
+		<div class="time-wrapper">
+			<div class="number-wrapper">
+				<div class="number-item minutes-f-1">
+					<div class="number-label curr top"></div>
+					<div class="number-label curr bottom"></div>
+				</div>
+				<div class="number-item minutes-f-2">
+					<div class="number-label curr top"></div>
+					<div class="number-label curr bottom"></div>
+				</div>
+			</div>
+			<span class="label">minutes</span>
+		</div>
+	</div>
+</body>
+</html>
+
+
+
+
